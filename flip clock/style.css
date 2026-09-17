@@ -1,0 +1,101 @@
+/* Base Styling & Center Layout */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Flex Container for Units */
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-clock {
+  display: flex;
+  gap: 20px;
+}
+
+/* Individual Clock Unit */
+.flip-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3D Container for Card */
+.flip-card {
+  position: relative;
+  width: 80px;
+  height: 100px;
+  perspective: 1000px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+/* Common Styles for Card Halves */
+.card-face {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  font-size: 3em;
+  font-weight: bold;
+  backface-visibility: hidden;
+}
+
+/* Upper Half Structure */
+.card-face--front {
+  top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /* Centers the top half of the text */
+  align-items: flex-end;
+  height: calc(50% - 0.5px); 
+}
+
+/* Lower Half Structure */
+.card-face--back {
+  bottom: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 1px solid #111;
+  /* Centers the bottom half of the text */
+  align-items: flex-start;
+}
+
+/* Flip Animation Class (Trigger via JS) */
+.flip-card.is-flipping .card-face--front {
+  transform-origin: bottom;
+  animation: flipTopCard 0.6s ease-in-out forwards;
+}
+
+@keyframes flipTopCard {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+/* Label Styling under Cards */
+.flip-label {
+  margin-top: 12px;
+  font-size: 0.85em;
+  letter-spacing: 1.5px;
+  color: #aaa;
+  text-transform: uppercase; /* Capital letters directly via CSS */
+  font-weight: 500;
+}
